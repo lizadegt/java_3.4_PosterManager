@@ -3,7 +3,7 @@ package ru.netology.manager;
 import ru.netology.domain.PosterMovies;
 
 public class PosterManager {
-    public PosterMovies[] movies = new PosterMovies[0];
+    private PosterMovies[] movies = new PosterMovies[0];
     private int numberFilms = 10;
 
 //    public PosterManager(PosterMovies[] movies) {
@@ -37,8 +37,14 @@ public class PosterManager {
     }
 
     public PosterMovies[] getMovies() {
-        PosterMovies[] result = new PosterMovies[numberFilms];
-        for (int i = 0; i < result.length; i++) {
+        int filmsInManager;
+        if (movies.length > numberFilms) {
+            filmsInManager = numberFilms;
+        } else {
+            filmsInManager = movies.length;
+        }
+        PosterMovies[] result = new PosterMovies[filmsInManager];
+        for (int i = 0; i < filmsInManager; i++) {
             int index = movies.length - i - 1;
             result[i] = movies[index];
         }

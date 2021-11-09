@@ -54,4 +54,24 @@ public class PosterManagerTest {
 
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void limitMoreThanMovies() {
+        PosterManager manager = new PosterManager(6);
+        PosterMovies first = new PosterMovies(1, "first", "drama");
+        PosterMovies second = new PosterMovies(2, "second", "thriller");
+        PosterMovies third = new PosterMovies(3, "third", "horrors");
+        PosterMovies four = new PosterMovies(4, "four ", "horrors");
+        PosterMovies five = new PosterMovies(5, "five", "horrors");
+        manager.addMovie(first);
+        manager.addMovie(second);
+        manager.addMovie(third);
+        manager.addMovie(four);
+        manager.addMovie(five);
+
+        PosterMovies[] actual = manager.getMovies();
+        PosterMovies[] expected = new PosterMovies[]{five, four, third, second, first};
+
+        assertArrayEquals(expected, actual);
+    }
 }
